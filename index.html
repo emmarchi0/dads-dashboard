@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0e17">
+    <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Dad's Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0e17;
-            color: #e2e8f0;
+            background: #f0f2f5;
+            color: #111827;
             min-height: 100vh;
             line-height: 1.6;
         }
@@ -25,71 +25,105 @@
 
         /* ===== TICKER TAPE ===== */
         .ticker-wrapper {
-            border-bottom: 1px solid #1e293b;
+            border-bottom: 1px solid #e5e7eb;
             position: sticky;
             top: 0;
             z-index: 100;
-            background: #0a0e17;
+            background: #ffffff;
         }
 
         /* ===== HEADER ===== */
         .header {
-            text-align: center;
-            padding: 28px 20px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .header h1 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #111827;
         }
 
-        .header .subtitle {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-
-        .header .last-updated {
-            color: #475569;
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
             font-size: 0.8rem;
-            margin-top: 8px;
+            color: #6b7280;
         }
 
         .refresh-btn {
-            background: rgba(96, 165, 250, 0.1);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            color: #60a5fa;
-            padding: 6px 16px;
-            border-radius: 6px;
+            background: #2563eb;
+            border: none;
+            color: #ffffff;
+            padding: 7px 18px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.8rem;
-            margin-top: 10px;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .refresh-btn:hover { background: #1d4ed8; }
+
+        /* ===== TAB BAR ===== */
+        .tab-bar {
+            display: flex;
+            gap: 4px;
+            padding: 10px 24px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            overflow-x: auto;
+            position: sticky;
+            top: 46px;
+            z-index: 99;
+        }
+
+        .tab-bar::-webkit-scrollbar { display: none; }
+
+        .tab {
+            padding: 9px 22px;
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 0.88rem;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
             font-family: inherit;
             transition: all 0.2s;
         }
 
-        .refresh-btn:hover { background: rgba(96, 165, 250, 0.2); }
+        .tab:hover { background: #f3f4f6; color: #374151; }
 
-        /* ===== DASHBOARD GRID ===== */
-        .dashboard {
-            max-width: 1400px;
+        .tab.active { background: #2563eb; color: #ffffff; }
+
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 20px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            padding: 24px;
+            animation: fadeIn 0.3s ease;
         }
+
+        .tab-content.active { display: block; }
 
         /* ===== CARDS ===== */
         .card {
-            background: #141b2d;
+            background: #ffffff;
             border-radius: 12px;
-            border: 1px solid #1e293b;
+            border: 1px solid #e5e7eb;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .card-header {
@@ -97,10 +131,11 @@
             align-items: center;
             gap: 10px;
             padding: 14px 20px;
-            border-bottom: 1px solid #1e293b;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fafbfc;
         }
 
-        .card-header h2 { font-size: 1rem; font-weight: 600; }
+        .card-header h2 { font-size: 1rem; font-weight: 600; color: #111827; }
 
         .accent {
             width: 4px;
@@ -108,99 +143,136 @@
             border-radius: 2px;
         }
 
-        .card-body { padding: 16px 20px; }
+        .card-body { padding: 20px; }
 
-        .full-width { grid-column: span 2; }
+        /* ===== SECTION ACCENTS ===== */
+        .accent-pentair { background: #0069AA; }
+        .accent-economy { background: #059669; }
+        .accent-politics { background: #7c3aed; }
+        .accent-news { background: #ea580c; }
+        .accent-warriors { background: #1d428a; }
+        .accent-niners { background: #aa0000; }
 
-        /* ===== SECTION COLORS ===== */
-        .pentair .accent { background: #0069AA; }
-        .pentair .card-header { border-bottom-color: rgba(0, 105, 170, 0.3); }
+        /* ===== TAB TITLES ===== */
+        .tab-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 20px;
+        }
 
-        .economy .accent { background: #10b981; }
-        .economy .card-header { border-bottom-color: rgba(16, 185, 129, 0.3); }
-
-        .politics .accent { background: #8b5cf6; }
-        .politics .card-header { border-bottom-color: rgba(139, 92, 246, 0.3); }
-
-        .economy-news .accent { background: #f59e0b; }
-        .economy-news .card-header { border-bottom-color: rgba(245, 158, 11, 0.3); }
-
-        .warriors .accent { background: #ffc72c; }
-        .warriors .card-header { border-bottom-color: rgba(255, 199, 44, 0.3); }
-
-        .niners .accent { background: #aa0000; }
-        .niners .card-header { border-bottom-color: rgba(170, 0, 0, 0.3); }
+        .section-subtitle {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #111827;
+            margin: 28px 0 14px;
+        }
 
         /* ===== WIDGET CONTAINERS ===== */
         .widget-container {
-            height: 450px;
+            height: 500px;
             position: relative;
         }
 
+        .widget-container.medium { height: 450px; }
+
         .tradingview-widget-container { height: 100%; }
 
-        /* ===== NEWS ===== */
-        .news-grid {
+        /* ===== NEWS GRID ===== */
+        .news-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .news-grid-1col {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            max-height: 460px;
-            overflow-y: auto;
-            padding-right: 4px;
+            gap: 10px;
         }
 
         .news-card {
             display: block;
-            padding: 12px 14px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             transition: all 0.2s;
             cursor: pointer;
         }
 
         .news-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+            border-color: #d1d5db;
+            transform: translateY(-2px);
         }
 
         .news-title {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            line-height: 1.4;
-            margin-bottom: 6px;
+            line-height: 1.45;
+            color: #111827;
+            margin-bottom: 8px;
         }
 
         .news-meta {
             display: flex;
             justify-content: space-between;
             font-size: 0.75rem;
-            color: #64748b;
+            color: #9ca3af;
         }
 
+        .news-meta .source { color: #6b7280; font-weight: 500; }
+
         /* ===== SPORTS ===== */
-        .team-header {
+        .team-banner {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 20px;
+            padding: 24px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .team-banner.warriors-banner {
+            border-left: 5px solid #1d428a;
+        }
+
+        .team-banner.niners-banner {
+            border-left: 5px solid #aa0000;
         }
 
         .team-logo {
-            width: 64px;
-            height: 64px;
+            width: 72px;
+            height: 72px;
             object-fit: contain;
+        }
+
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111827;
         }
 
         .team-record {
             font-size: 1.8rem;
             font-weight: 700;
+            color: #111827;
         }
 
         .team-standing {
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .sports-grid {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 24px;
         }
 
         .section-label {
@@ -208,8 +280,8 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: #64748b;
-            margin: 16px 0 8px;
+            color: #9ca3af;
+            margin-bottom: 10px;
         }
 
         .game-item {
@@ -217,47 +289,41 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 12px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            background: #f9fafb;
+            border: 1px solid #f3f4f6;
             margin-bottom: 6px;
             font-size: 0.85rem;
         }
 
-        .game-item.win { border-left: 3px solid #10b981; }
-        .game-item.loss { border-left: 3px solid #ef4444; }
+        .game-item.win { border-left: 3px solid #059669; }
+        .game-item.loss { border-left: 3px solid #dc2626; }
 
         .game-item .result { font-weight: 600; }
-        .game-item .result.win-text { color: #10b981; }
-        .game-item .result.loss-text { color: #ef4444; }
+        .game-item .result.win-text { color: #059669; }
+        .game-item .result.loss-text { color: #dc2626; }
 
-        .game-date-label {
-            font-size: 0.75rem;
-            color: #64748b;
-        }
+        .game-date-label { font-size: 0.75rem; color: #9ca3af; }
 
         .next-game-card {
-            background: rgba(96, 165, 250, 0.08);
-            border: 1px solid rgba(96, 165, 250, 0.15);
-            border-radius: 8px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
             padding: 14px 16px;
-            margin-top: 8px;
+            margin-bottom: 16px;
         }
 
         .next-game-card .label {
-            font-size: 0.75rem;
-            color: #60a5fa;
+            font-size: 0.7rem;
+            color: #2563eb;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
             margin-bottom: 4px;
         }
 
-        .next-game-card .matchup { font-size: 1rem; font-weight: 600; }
-
-        .next-game-card .datetime {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-top: 4px;
-        }
+        .next-game-card .matchup { font-size: 0.95rem; font-weight: 600; color: #111827; }
+        .next-game-card .datetime { font-size: 0.8rem; color: #6b7280; margin-top: 4px; }
 
         /* ===== STATES ===== */
         .loading {
@@ -265,14 +331,14 @@
             align-items: center;
             justify-content: center;
             padding: 40px;
-            color: #64748b;
+            color: #9ca3af;
         }
 
         .loading-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #64748b;
+            background: #9ca3af;
             margin: 0 4px;
             animation: loadingDot 1.4s infinite ease-in-out both;
         }
@@ -288,30 +354,24 @@
         .error-state {
             text-align: center;
             padding: 30px;
-            color: #64748b;
+            color: #9ca3af;
         }
 
-        .error-state a {
-            color: #60a5fa;
-            display: inline-block;
-            margin-top: 8px;
-        }
+        .error-state a { color: #2563eb; display: inline-block; margin-top: 8px; }
 
-        .error-state button {
+        .error-state button, .retry-btn {
             margin-top: 10px;
-            background: rgba(96, 165, 250, 0.1);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            color: #60a5fa;
+            background: #2563eb;
+            border: none;
+            color: #ffffff;
             padding: 8px 20px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-family: inherit;
             font-size: 0.85rem;
         }
 
-        .fade-in {
-            animation: fadeIn 0.4s ease-out;
-        }
+        .fade-in { animation: fadeIn 0.35s ease-out; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
@@ -319,27 +379,33 @@
         }
 
         /* ===== SCROLLBAR ===== */
-        .news-grid::-webkit-scrollbar { width: 5px; }
-        .news-grid::-webkit-scrollbar-track { background: transparent; }
-        .news-grid::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
 
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
-            padding: 20px;
-            color: #334155;
+            padding: 24px;
+            color: #9ca3af;
             font-size: 0.75rem;
+            border-top: 1px solid #e5e7eb;
+            background: #ffffff;
         }
 
-        .footer a { color: #475569; }
+        .footer a { color: #6b7280; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .dashboard { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .header h1 { font-size: 1.5rem; }
+            .header { flex-direction: column; text-align: center; }
+            .tab-bar { padding: 8px 12px; }
+            .tab { padding: 8px 16px; font-size: 0.82rem; }
+            .tab-content { padding: 16px; }
+            .news-grid-2col { grid-template-columns: 1fr; }
+            .sports-grid { grid-template-columns: 1fr; }
             .widget-container { height: 380px; }
             .team-record { font-size: 1.4rem; }
+            .team-banner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -357,14 +423,14 @@
                     {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"},
                     {"proName": "FOREXCOM:DJI", "title": "Dow 30"},
                     {"proName": "TVC:US10Y", "title": "US 10Y Yield"},
-                    {"proName": "COMEX:GC1!", "title": "Gold"},
-                    {"proName": "NYMEX:CL1!", "title": "Crude Oil"},
+                    {"proName": "TVC:GOLD", "title": "Gold"},
+                    {"proName": "TVC:USOIL", "title": "Crude Oil"},
                     {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"}
                 ],
                 "showSymbolLogo": true,
                 "isTransparent": true,
                 "displayMode": "adaptive",
-                "colorTheme": "dark",
+                "colorTheme": "light",
                 "locale": "en"
             }
             </script>
@@ -374,18 +440,27 @@
     <!-- ===== HEADER ===== -->
     <header class="header">
         <h1>Dad's Dashboard</h1>
-        <p class="subtitle">Live updates &mdash; Economy &bull; Politics &bull; Pentair &bull; Warriors &bull; 49ers</p>
-        <p class="last-updated">Last refreshed: <span id="lastUpdated">Loading...</span> &bull; Auto-refreshes every 5 min</p>
-        <button class="refresh-btn" onclick="refreshAll()">Refresh Now</button>
+        <div class="header-right">
+            <span>Updated: <span id="lastUpdated">...</span></span>
+            <button class="refresh-btn" onclick="refreshAll()">Refresh</button>
+        </div>
     </header>
 
-    <!-- ===== DASHBOARD ===== -->
-    <main class="dashboard">
+    <!-- ===== TAB BAR ===== -->
+    <nav class="tab-bar">
+        <button class="tab active" data-tab="home" onclick="switchTab('home')">Home</button>
+        <button class="tab" data-tab="politics" onclick="switchTab('politics')">Politics</button>
+        <button class="tab" data-tab="economy" onclick="switchTab('economy')">Economy</button>
+        <button class="tab" data-tab="news" onclick="switchTab('news')">News</button>
+        <button class="tab" data-tab="warriors" onclick="switchTab('warriors')">Warriors</button>
+        <button class="tab" data-tab="niners" onclick="switchTab('niners')">49ers</button>
+    </nav>
 
-        <!-- Pentair Stock Chart -->
-        <section class="card pentair">
+    <!-- ===== TAB: HOME ===== -->
+    <div class="tab-content active" id="tab-home">
+        <section class="card" style="margin-bottom:24px;">
             <div class="card-header">
-                <div class="accent"></div>
+                <div class="accent accent-pentair"></div>
                 <h2>Pentair Stock (PNR)</h2>
             </div>
             <div class="widget-container">
@@ -397,11 +472,9 @@
                         "symbol": "NYSE:PNR",
                         "interval": "D",
                         "timezone": "America/New_York",
-                        "theme": "dark",
+                        "theme": "light",
                         "style": "1",
                         "locale": "en",
-                        "backgroundColor": "rgba(20, 27, 45, 1)",
-                        "gridColor": "rgba(30, 41, 59, 0.5)",
                         "hide_top_toolbar": false,
                         "hide_legend": false,
                         "allow_symbol_change": false,
@@ -414,160 +487,124 @@
             </div>
         </section>
 
-        <!-- Economy & Markets -->
-        <section class="card economy">
-            <div class="card-header">
-                <div class="accent"></div>
-                <h2>Economy &amp; Markets</h2>
-            </div>
-            <div class="widget-container">
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                    {
-                        "colorTheme": "dark",
-                        "dateRange": "12M",
-                        "showChart": true,
-                        "locale": "en",
-                        "isTransparent": true,
-                        "showSymbolLogo": true,
-                        "showFloatingTooltip": true,
-                        "width": "100%",
-                        "height": "100%",
-                        "tabs": [
-                            {
-                                "title": "Indices",
-                                "symbols": [
-                                    {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
-                                    {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
-                                    {"s": "FOREXCOM:DJI", "d": "Dow 30"},
-                                    {"s": "INDEX:RUT", "d": "Russell 2000"},
-                                    {"s": "INDEX:VIX", "d": "VIX"}
-                                ]
-                            },
-                            {
-                                "title": "Bonds",
-                                "symbols": [
-                                    {"s": "TVC:US02Y", "d": "US 2Y Yield"},
-                                    {"s": "TVC:US10Y", "d": "US 10Y Yield"},
-                                    {"s": "TVC:US30Y", "d": "US 30Y Yield"}
-                                ]
-                            },
-                            {
-                                "title": "Commodities",
-                                "symbols": [
-                                    {"s": "COMEX:GC1!", "d": "Gold"},
-                                    {"s": "COMEX:SI1!", "d": "Silver"},
-                                    {"s": "NYMEX:CL1!", "d": "Crude Oil"},
-                                    {"s": "NYMEX:NG1!", "d": "Natural Gas"}
-                                ]
-                            }
-                        ]
-                    }
-                    </script>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="accent accent-warriors"></div>
+                    <h2>Warriors Quick Look</h2>
+                </div>
+                <div class="card-body" id="home-warriors-quick">
+                    <div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
                 </div>
             </div>
-        </section>
-
-        <!-- Political News -->
-        <section class="card politics">
-            <div class="card-header">
-                <div class="accent"></div>
-                <h2>Political News</h2>
-            </div>
-            <div class="card-body">
-                <div id="politics-feed" class="news-grid">
-                    <div class="loading">
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                    </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="accent accent-niners"></div>
+                    <h2>49ers Quick Look</h2>
+                </div>
+                <div class="card-body" id="home-niners-quick">
+                    <div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- Economy News -->
-        <section class="card economy-news">
+    <!-- ===== TAB: POLITICS ===== -->
+    <div class="tab-content" id="tab-politics">
+        <h2 class="tab-title">Political News</h2>
+        <div id="politics-feed" class="news-grid-2col">
+            <div class="loading" style="grid-column:span 2;"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
+        </div>
+    </div>
+
+    <!-- ===== TAB: ECONOMY ===== -->
+    <div class="tab-content" id="tab-economy">
+        <h2 class="tab-title">Economy &amp; Markets</h2>
+        <section class="card" style="margin-bottom:24px;">
             <div class="card-header">
-                <div class="accent"></div>
-                <h2>Economy News</h2>
+                <div class="accent accent-economy"></div>
+                <h2>Market Overview</h2>
             </div>
-            <div class="card-body">
-                <div id="economy-feed" class="news-grid">
-                    <div class="loading">
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                    </div>
-                </div>
+            <div class="widget-container medium" id="economy-widget-area">
+                <div class="loading" style="height:100%;"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
             </div>
         </section>
+        <h3 class="section-subtitle">Economy Headlines</h3>
+        <div id="economy-feed" class="news-grid-2col">
+            <div class="loading" style="grid-column:span 2;"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
+        </div>
+    </div>
 
-        <!-- Golden State Warriors -->
-        <section class="card warriors">
-            <div class="card-header">
-                <div class="accent"></div>
-                <h2>Golden State Warriors</h2>
-            </div>
-            <div class="card-body">
-                <div id="warriors-data">
-                    <div class="loading">
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- ===== TAB: NEWS ===== -->
+    <div class="tab-content" id="tab-news">
+        <h2 class="tab-title">Top Stories</h2>
+        <div id="news-feed" class="news-grid-2col">
+            <div class="loading" style="grid-column:span 2;"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
+        </div>
+    </div>
 
-        <!-- San Francisco 49ers -->
-        <section class="card niners">
-            <div class="card-header">
-                <div class="accent"></div>
-                <h2>San Francisco 49ers</h2>
-            </div>
-            <div class="card-body">
-                <div id="niners-data">
-                    <div class="loading">
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- ===== TAB: WARRIORS ===== -->
+    <div class="tab-content" id="tab-warriors">
+        <div id="warriors-data">
+            <div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
+        </div>
+    </div>
 
-    </main>
+    <!-- ===== TAB: 49ERS ===== -->
+    <div class="tab-content" id="tab-niners">
+        <div id="niners-data">
+            <div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
+        </div>
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         Market data by <a href="https://www.tradingview.com" target="_blank" rel="noopener">TradingView</a>
         &bull; Sports data by ESPN
         &bull; News via Google News
+        &bull; Auto-refreshes every 5 min
     </footer>
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
         // ===== CONFIG =====
-        const CONFIG = {
+        var CONFIG = {
             REFRESH_INTERVAL: 5 * 60 * 1000,
-            NEWS_COUNT: 8,
+            NEWS_COUNT: 10,
             ESPN_BASE: 'https://site.api.espn.com/apis/site/v2/sports',
             RSS2JSON: 'https://api.rss2json.com/v1/api.json',
             ALLORIGINS: 'https://api.allorigins.win/get'
         };
 
+        var economyWidgetLoaded = false;
+
+        // ===== TAB SWITCHING =====
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+            document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
+
+            // Lazy-load economy widget on first visit
+            if (tabName === 'economy' && !economyWidgetLoaded) {
+                loadEconomyWidget();
+            }
+
+            // Trigger resize so TradingView widgets adjust
+            setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 200);
+        }
+
         // ===== HELPERS =====
         function sanitize(str) {
-            const div = document.createElement('div');
+            var div = document.createElement('div');
             div.textContent = str;
             return div.innerHTML;
         }
 
         function timeAgo(dateStr) {
-            const now = new Date();
-            const date = new Date(dateStr);
-            const diff = Math.floor((now - date) / 1000);
+            var now = new Date();
+            var date = new Date(dateStr);
+            var diff = Math.floor((now - date) / 1000);
             if (isNaN(diff) || diff < 0) return '';
             if (diff < 60) return 'just now';
             if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
@@ -577,15 +614,11 @@
         }
 
         function formatGameDate(dateStr) {
-            return new Date(dateStr).toLocaleDateString('en-US', {
-                weekday: 'short', month: 'short', day: 'numeric'
-            });
+            return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
         }
 
         function formatGameTime(dateStr) {
-            return new Date(dateStr).toLocaleTimeString('en-US', {
-                hour: 'numeric', minute: '2-digit'
-            });
+            return new Date(dateStr).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
         }
 
         function loadingHTML() {
@@ -594,50 +627,110 @@
 
         function updateTimestamp() {
             document.getElementById('lastUpdated').textContent =
-                new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+                new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
         }
 
-        // ===== NEWS =====
+        // ===== ECONOMY WIDGET (lazy load) =====
+        function loadEconomyWidget() {
+            economyWidgetLoaded = true;
+            var area = document.getElementById('economy-widget-area');
+            area.innerHTML = '';
+
+            var wc = document.createElement('div');
+            wc.className = 'tradingview-widget-container';
+            wc.style.height = '100%';
+
+            var wd = document.createElement('div');
+            wd.className = 'tradingview-widget-container__widget';
+            wc.appendChild(wd);
+
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
+            script.async = true;
+            script.text = JSON.stringify({
+                "colorTheme": "light",
+                "dateRange": "12M",
+                "showChart": true,
+                "locale": "en",
+                "isTransparent": true,
+                "showSymbolLogo": true,
+                "showFloatingTooltip": true,
+                "width": "100%",
+                "height": "100%",
+                "tabs": [
+                    {
+                        "title": "Indices",
+                        "symbols": [
+                            {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
+                            {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
+                            {"s": "FOREXCOM:DJI", "d": "Dow 30"},
+                            {"s": "INDEX:VIX", "d": "VIX"}
+                        ]
+                    },
+                    {
+                        "title": "Bonds",
+                        "symbols": [
+                            {"s": "TVC:US02Y", "d": "US 2Y Yield"},
+                            {"s": "TVC:US05Y", "d": "US 5Y Yield"},
+                            {"s": "TVC:US10Y", "d": "US 10Y Yield"},
+                            {"s": "TVC:US30Y", "d": "US 30Y Yield"}
+                        ]
+                    },
+                    {
+                        "title": "Commodities",
+                        "symbols": [
+                            {"s": "TVC:GOLD", "d": "Gold"},
+                            {"s": "TVC:SILVER", "d": "Silver"},
+                            {"s": "TVC:USOIL", "d": "Crude Oil"}
+                        ]
+                    }
+                ]
+            });
+            wc.appendChild(script);
+            area.appendChild(wc);
+        }
+
+        // ===== NEWS FETCHING =====
         async function fetchNews(query, containerId, retryFnName, fallbackUrl) {
-            const container = document.getElementById(containerId);
+            var container = document.getElementById(containerId);
 
             try {
-                // Attempt 1: rss2json
-                const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=en-US&gl=US&ceid=US:en';
-                const res = await fetch(CONFIG.RSS2JSON + '?rss_url=' + encodeURIComponent(rssUrl));
-                const data = await res.json();
+                var rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=en-US&gl=US&ceid=US:en';
+                var res = await fetch(CONFIG.RSS2JSON + '?rss_url=' + encodeURIComponent(rssUrl));
+                var data = await res.json();
 
                 if (data.status === 'ok' && data.items && data.items.length > 0) {
                     renderNewsCards(container, data.items);
                     return;
                 }
-                throw new Error('rss2json returned no data');
+                throw new Error('no data');
             } catch (e1) {
                 try {
-                    // Attempt 2: allorigins proxy + DOMParser
-                    const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=en-US&gl=US&ceid=US:en';
-                    const res = await fetch(CONFIG.ALLORIGINS + '?url=' + encodeURIComponent(rssUrl));
-                    const data = await res.json();
-                    const parser = new DOMParser();
-                    const xml = parser.parseFromString(data.contents, 'text/xml');
-                    const items = xml.querySelectorAll('item');
+                    var rssUrl2 = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=en-US&gl=US&ceid=US:en';
+                    var res2 = await fetch(CONFIG.ALLORIGINS + '?url=' + encodeURIComponent(rssUrl2));
+                    var data2 = await res2.json();
+                    var parser = new DOMParser();
+                    var xml = parser.parseFromString(data2.contents, 'text/xml');
+                    var items = xml.querySelectorAll('item');
 
                     if (items.length > 0) {
-                        const parsed = Array.from(items).slice(0, CONFIG.NEWS_COUNT).map(item => ({
-                            title: item.querySelector('title')?.textContent || '',
-                            link: item.querySelector('link')?.textContent || '#',
-                            pubDate: item.querySelector('pubDate')?.textContent || '',
-                            author: item.querySelector('source')?.textContent || 'News'
-                        }));
+                        var parsed = Array.from(items).slice(0, CONFIG.NEWS_COUNT).map(function(item) {
+                            return {
+                                title: item.querySelector('title') ? item.querySelector('title').textContent : '',
+                                link: item.querySelector('link') ? item.querySelector('link').textContent : '#',
+                                pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : '',
+                                author: item.querySelector('source') ? item.querySelector('source').textContent : 'News'
+                            };
+                        });
                         renderNewsCards(container, parsed);
                         return;
                     }
-                    throw new Error('allorigins returned no items');
+                    throw new Error('no items');
                 } catch (e2) {
-                    // Both failed
                     container.innerHTML =
-                        '<div class="error-state">' +
-                        '<p>Unable to load news automatically</p>' +
+                        '<div class="error-state" style="grid-column:span 2;">' +
+                        '<p>Unable to load news</p>' +
                         '<a href="' + sanitize(fallbackUrl) + '" target="_blank" rel="noopener">Open on Google News &rarr;</a><br>' +
                         '<button onclick="' + retryFnName + '()">Try Again</button>' +
                         '</div>';
@@ -650,48 +743,44 @@
                 return '<a href="' + sanitize(item.link) + '" target="_blank" rel="noopener" class="news-card fade-in">' +
                     '<div class="news-title">' + sanitize(item.title) + '</div>' +
                     '<div class="news-meta">' +
-                    '<span>' + sanitize(item.author || 'News') + '</span>' +
+                    '<span class="source">' + sanitize(item.author || 'News') + '</span>' +
                     '<span>' + timeAgo(item.pubDate) + '</span>' +
                     '</div></a>';
             }).join('');
         }
 
         function fetchPoliticsNews() {
-            fetchNews(
-                'US politics news today',
-                'politics-feed',
-                'fetchPoliticsNews',
-                'https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4ZERBU0FoVnVBUSgBUAE'
-            );
+            fetchNews('US politics news today', 'politics-feed', 'fetchPoliticsNews',
+                'https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4ZERBU0FoVnVBUSgBUAE');
         }
 
         function fetchEconomyNews() {
-            fetchNews(
-                'US economy financial markets today',
-                'economy-feed',
-                'fetchEconomyNews',
-                'https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR2RtZUhRU0FoVnVBUm9DUkVVb0FBUAE'
-            );
+            fetchNews('US economy financial markets today', 'economy-feed', 'fetchEconomyNews',
+                'https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR2RtZUhRU0FoVnVBUm9DUkVVb0FBUAE');
+        }
+
+        function fetchGeneralNews() {
+            fetchNews('top news today USA', 'news-feed', 'fetchGeneralNews',
+                'https://news.google.com/?hl=en-US&gl=US&ceid=US:en');
         }
 
         // ===== SPORTS =====
-        async function fetchTeamData(sport, league, teamId, sectionId) {
-            const container = document.getElementById(sectionId + '-data');
+        async function fetchTeamData(sport, league, teamId, sectionId, bannerClass) {
+            var container = document.getElementById(sectionId + '-data');
 
             try {
-                // Fetch team info
-                const teamUrl = CONFIG.ESPN_BASE + '/' + sport + '/' + league + '/teams/' + teamId;
-                const res = await fetch(teamUrl);
-                const data = await res.json();
-                const team = data.team;
+                var teamUrl = CONFIG.ESPN_BASE + '/' + sport + '/' + league + '/teams/' + teamId;
+                var res = await fetch(teamUrl);
+                var data = await res.json();
+                var team = data.team;
 
-                const logoUrl = team.logos && team.logos[0] ? team.logos[0].href : '';
-                const record = (team.record && team.record.items && team.record.items[0])
-                    ? team.record.items[0].summary : 'N/A';
-                const standing = team.standingSummary || '';
+                var logoUrl = team.logos && team.logos[0] ? team.logos[0].href : '';
+                var record = (team.record && team.record.items && team.record.items[0]) ? team.record.items[0].summary : 'N/A';
+                var standing = team.standingSummary || '';
+                var displayName = team.displayName || '';
 
                 // Next event
-                var nextEventHtml = '<p style="color:#64748b;font-size:0.85rem;margin-top:12px;">No upcoming games scheduled</p>';
+                var nextEventHtml = '<p style="color:#9ca3af;font-size:0.85rem;">No upcoming games scheduled</p>';
                 if (team.nextEvent && team.nextEvent.length > 0) {
                     var evt = team.nextEvent[0];
                     var name = evt.shortName || evt.name || '';
@@ -703,7 +792,7 @@
                         '</div>';
                 }
 
-                // Fetch recent results from schedule
+                // Recent results
                 var recentHtml = '';
                 try {
                     var schedRes = await fetch(teamUrl + '/schedule');
@@ -711,8 +800,7 @@
                     var events = schedData.events || [];
                     var completed = events.filter(function(e) {
                         return e.competitions && e.competitions[0] &&
-                               e.competitions[0].status &&
-                               e.competitions[0].status.type &&
+                               e.competitions[0].status && e.competitions[0].status.type &&
                                e.competitions[0].status.type.completed;
                     });
                     var recent = completed.slice(-5);
@@ -724,19 +812,13 @@
                             var competitors = comp.competitors || [];
                             var us = competitors.find(function(c) { return String(c.id) === String(teamId); });
                             var them = competitors.find(function(c) { return String(c.id) !== String(teamId); });
-
-                            if (!us || !them) {
-                                us = competitors[0];
-                                them = competitors[1];
-                            }
-
+                            if (!us || !them) { us = competitors[0]; them = competitors[1]; }
                             var won = us && us.winner;
                             var ourScore = us ? (typeof us.score === 'object' ? us.score.displayValue : us.score) : '?';
                             var theirScore = them ? (typeof them.score === 'object' ? them.score.displayValue : them.score) : '?';
                             var opponentName = (them && them.team) ? (them.team.abbreviation || them.team.shortDisplayName || '?') : '?';
                             var homeAway = (us && us.homeAway === 'home') ? 'vs' : '@';
                             var dateLabel = event.date ? formatGameDate(event.date) : '';
-
                             return '<div class="game-item ' + (won ? 'win' : 'loss') + '">' +
                                 '<div><span>' + homeAway + ' ' + sanitize(opponentName) + '</span>' +
                                 '<div class="game-date-label">' + dateLabel + '</div></div>' +
@@ -745,21 +827,48 @@
                                 '</span></div>';
                         }).join('');
                     }
-                } catch (schedErr) {
-                    // Schedule unavailable, skip recent results
-                }
+                } catch (schedErr) { /* skip */ }
 
+                // Team news
+                var newsHtml = '';
+                try {
+                    var newsRes = await fetch(CONFIG.ESPN_BASE + '/' + sport + '/' + league + '/news?team=' + teamId);
+                    var newsData = await newsRes.json();
+                    var articles = newsData.articles || [];
+
+                    if (articles.length > 0) {
+                        newsHtml = '<div class="section-label">Team Headlines</div>' +
+                            '<div class="news-grid-1col">' +
+                            articles.slice(0, 8).map(function(article) {
+                                var link = (article.links && article.links.web) ? article.links.web.href : '#';
+                                return '<a href="' + sanitize(link) + '" target="_blank" rel="noopener" class="news-card">' +
+                                    '<div class="news-title">' + sanitize(article.headline || '') + '</div>' +
+                                    '<div class="news-meta">' +
+                                    '<span class="source">ESPN</span>' +
+                                    '<span>' + timeAgo(article.published || '') + '</span>' +
+                                    '</div></a>';
+                            }).join('') +
+                            '</div>';
+                    }
+                } catch (newsErr) { /* skip */ }
+
+                // Build page
                 container.innerHTML =
                     '<div class="fade-in">' +
-                    '<div class="team-header">' +
-                    (logoUrl ? '<img src="' + logoUrl + '" alt="' + sanitize(team.displayName || '') + '" class="team-logo">' : '') +
+                    '<div class="team-banner ' + bannerClass + '">' +
+                    (logoUrl ? '<img src="' + logoUrl + '" alt="' + sanitize(displayName) + '" class="team-logo">' : '') +
                     '<div>' +
+                    '<div class="team-name">' + sanitize(displayName) + '</div>' +
                     '<div class="team-record">' + sanitize(record) + '</div>' +
                     '<div class="team-standing">' + sanitize(standing) + '</div>' +
                     '</div></div>' +
-                    nextEventHtml +
-                    recentHtml +
-                    '</div>';
+                    '<div class="sports-grid">' +
+                    '<div>' + nextEventHtml + recentHtml + '</div>' +
+                    '<div>' + (newsHtml || '<p style="color:#9ca3af;">No recent team news</p>') + '</div>' +
+                    '</div></div>';
+
+                // Update home quick-look card
+                updateHomeQuickLook(sectionId, record, standing, team.nextEvent, logoUrl);
 
             } catch (e) {
                 container.innerHTML =
@@ -770,22 +879,48 @@
             }
         }
 
+        function updateHomeQuickLook(sectionId, record, standing, nextEvent, logoUrl) {
+            var target = sectionId === 'warriors' ? 'home-warriors-quick' : 'home-niners-quick';
+            var el = document.getElementById(target);
+            if (!el) return;
+
+            var nextInfo = 'No upcoming games';
+            if (nextEvent && nextEvent.length > 0) {
+                var evt = nextEvent[0];
+                nextInfo = (evt.shortName || evt.name || '') + '<br><span style="color:#6b7280;font-size:0.8rem;">' +
+                    formatGameDate(evt.date) + ' at ' + formatGameTime(evt.date) + '</span>';
+            }
+
+            el.innerHTML =
+                '<div class="fade-in" style="display:flex;align-items:center;gap:14px;">' +
+                (logoUrl ? '<img src="' + logoUrl + '" style="width:48px;height:48px;object-fit:contain;" alt="">' : '') +
+                '<div>' +
+                '<div style="font-size:1.4rem;font-weight:700;">' + sanitize(record) + '</div>' +
+                '<div style="font-size:0.8rem;color:#6b7280;">' + sanitize(standing) + '</div>' +
+                '</div></div>' +
+                '<div style="margin-top:12px;padding:10px 12px;background:#f9fafb;border-radius:8px;font-size:0.85rem;">' +
+                '<span style="font-weight:600;color:#2563eb;font-size:0.7rem;text-transform:uppercase;">Next Game</span><br>' +
+                nextInfo +
+                '</div>';
+        }
+
         // Retry wrappers
         function fetchTeam_warriors() {
             document.getElementById('warriors-data').innerHTML = loadingHTML();
-            fetchTeamData('basketball', 'nba', 9, 'warriors');
+            fetchTeamData('basketball', 'nba', 9, 'warriors', 'warriors-banner');
         }
 
         function fetchTeam_niners() {
             document.getElementById('niners-data').innerHTML = loadingHTML();
-            fetchTeamData('football', 'nfl', 25, 'niners');
+            fetchTeamData('football', 'nfl', 25, 'niners', 'niners-banner');
         }
 
-        // ===== REFRESH ALL =====
+        // ===== REFRESH =====
         function refreshAll() {
             updateTimestamp();
             fetchPoliticsNews();
             fetchEconomyNews();
+            fetchGeneralNews();
             fetchTeam_warriors();
             fetchTeam_niners();
         }
@@ -795,10 +930,10 @@
             updateTimestamp();
             fetchPoliticsNews();
             fetchEconomyNews();
+            fetchGeneralNews();
             fetchTeam_warriors();
             fetchTeam_niners();
 
-            // Auto-refresh news & sports every 5 minutes
             setInterval(refreshAll, CONFIG.REFRESH_INTERVAL);
         });
     </script>
