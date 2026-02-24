@@ -37,13 +37,6 @@
             background: #eceef1;
             border-bottom: 1px solid #c9cdd4;
             padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .header-center {
             text-align: center;
         }
 
@@ -61,27 +54,6 @@
             margin-top: 6px;
             font-size: 0.8rem;
             color: #6b7280;
-        }
-
-        .created-by {
-            position: absolute;
-            right: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.78rem;
-            color: #6b7280;
-            font-weight: 500;
-        }
-
-        .created-by img {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #c9cdd4;
         }
 
         .refresh-btn {
@@ -420,8 +392,6 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .header { flex-direction: column; gap: 10px; }
-            .created-by { position: static; transform: none; }
             .header h1 { font-size: 1.3rem; }
             .tab-bar { padding: 8px 12px; }
             .tab { padding: 8px 16px; font-size: 0.82rem; }
@@ -466,16 +436,10 @@
 
     <!-- ===== HEADER ===== -->
     <header class="header">
-        <div class="header-center">
-            <h1>Hello Michael</h1>
-            <div class="header-meta">
-                <span>Updated: <span id="lastUpdated">...</span></span>
-                <button class="refresh-btn" onclick="refreshAll()">Refresh</button>
-            </div>
-        </div>
-        <div class="created-by">
-            <span>Created by:</span>
-            <img src="creator.png" alt="Eric">
+        <h1>Hello Michael</h1>
+        <div class="header-meta">
+            <span>Updated: <span id="lastUpdated">...</span></span>
+            <button class="refresh-btn" onclick="refreshAll()">Refresh</button>
         </div>
     </header>
 
@@ -487,7 +451,6 @@
         <button class="tab" data-tab="news" onclick="switchTab('news')">News</button>
         <button class="tab" data-tab="warriors" onclick="switchTab('warriors')">Warriors</button>
         <button class="tab" data-tab="niners" onclick="switchTab('niners')">49ers</button>
-        <button class="tab" data-tab="requests" onclick="switchTab('requests')">Requests</button>
     </nav>
 
     <!-- ===== TAB: HOME ===== -->
@@ -638,30 +601,6 @@
     <div class="tab-content" id="tab-niners">
         <div id="niners-data">
             <div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
-        </div>
-    </div>
-
-    <!-- ===== TAB: REQUESTS ===== -->
-    <div class="tab-content" id="tab-requests">
-        <h2 class="tab-title">Requests</h2>
-        <div class="card" style="max-width:700px;">
-            <div class="card-header">
-                <div class="accent" style="background:#4b5563;"></div>
-                <h2>Got an idea?</h2>
-            </div>
-            <div class="card-body">
-                <p style="font-size:0.95rem;color:#4b5563;line-height:1.7;margin-bottom:20px;">
-                    If dad has an idea to be added to the website, Eric may add it when he gets a chance!
-                </p>
-                <div style="background:#e4e6ea;border-radius:10px;padding:16px;border:1px solid #c9cdd4;">
-                    <div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#9ca3af;margin-bottom:10px;">How it works</div>
-                    <ul style="list-style:none;font-size:0.88rem;color:#4b5563;">
-                        <li style="padding:6px 0;">1. Think of something you'd like to see on the dashboard</li>
-                        <li style="padding:6px 0;">2. Tell Eric about it</li>
-                        <li style="padding:6px 0;">3. Eric will work his magic when he gets a chance</li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 
