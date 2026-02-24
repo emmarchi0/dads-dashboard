@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#e5e7eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Michael's Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f0f2f5;
-            color: #111827;
+            background: #d6d9e0;
+            color: #1f2937;
             min-height: 100vh;
             line-height: 1.6;
         }
@@ -25,17 +25,17 @@
 
         /* ===== TICKER TAPE ===== */
         .ticker-wrapper {
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #c9cdd4;
             position: sticky;
             top: 0;
             z-index: 100;
-            background: #ffffff;
+            background: #eceef1;
         }
 
         /* ===== HEADER ===== */
         .header {
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
+            background: #eceef1;
+            border-bottom: 1px solid #c9cdd4;
             padding: 18px 24px;
             text-align: center;
         }
@@ -43,7 +43,7 @@
         .header h1 {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #111827;
+            color: #1f2937;
         }
 
         .header-meta {
@@ -57,7 +57,7 @@
         }
 
         .refresh-btn {
-            background: #2563eb;
+            background: #4b5563;
             border: none;
             color: #ffffff;
             padding: 6px 16px;
@@ -69,15 +69,15 @@
             transition: all 0.2s;
         }
 
-        .refresh-btn:hover { background: #1d4ed8; }
+        .refresh-btn:hover { background: #374151; }
 
         /* ===== TAB BAR ===== */
         .tab-bar {
             display: flex;
             gap: 4px;
             padding: 10px 24px;
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
+            background: #eceef1;
+            border-bottom: 1px solid #c9cdd4;
             overflow-x: auto;
             position: sticky;
             top: 46px;
@@ -100,8 +100,8 @@
             transition: all 0.2s;
         }
 
-        .tab:hover { background: #f3f4f6; color: #374151; }
-        .tab.active { background: #2563eb; color: #ffffff; }
+        .tab:hover { background: #dfe1e6; color: #374151; }
+        .tab.active { background: #4b5563; color: #ffffff; }
 
         /* ===== TAB CONTENT ===== */
         .tab-content {
@@ -116,11 +116,11 @@
 
         /* ===== CARDS ===== */
         .card {
-            background: #ffffff;
+            background: #f0f1f4;
             border-radius: 12px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #c9cdd4;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
 
         .card-header {
@@ -128,11 +128,11 @@
             align-items: center;
             gap: 10px;
             padding: 14px 20px;
-            border-bottom: 1px solid #e5e7eb;
-            background: #fafbfc;
+            border-bottom: 1px solid #c9cdd4;
+            background: #e4e6ea;
         }
 
-        .card-header h2 { font-size: 1rem; font-weight: 600; color: #111827; }
+        .card-header h2 { font-size: 1rem; font-weight: 600; color: #1f2937; }
 
         .accent {
             width: 4px;
@@ -155,14 +155,14 @@
         .tab-title {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #111827;
+            color: #1f2937;
             margin-bottom: 20px;
         }
 
         .section-subtitle {
             font-size: 1.05rem;
             font-weight: 600;
-            color: #111827;
+            color: #1f2937;
             margin: 28px 0 14px;
         }
 
@@ -202,16 +202,16 @@
             gap: 14px;
             padding: 14px;
             border-radius: 10px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
+            background: #eceef1;
+            border: 1px solid #c9cdd4;
             transition: all 0.2s;
             cursor: pointer;
             align-items: flex-start;
         }
 
         .news-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-            border-color: #d1d5db;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #9ca3af;
             transform: translateY(-2px);
         }
 
@@ -221,7 +221,7 @@
             object-fit: cover;
             border-radius: 8px;
             flex-shrink: 0;
-            background: #f3f4f6;
+            background: #d6d9e0;
         }
 
         .news-card-text {
@@ -233,7 +233,7 @@
             font-size: 0.88rem;
             font-weight: 500;
             line-height: 1.4;
-            color: #111827;
+            color: #1f2937;
             margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 3;
@@ -256,11 +256,11 @@
             align-items: center;
             gap: 20px;
             padding: 24px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
+            background: #eceef1;
+            border: 1px solid #c9cdd4;
             border-radius: 12px;
             margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
 
         .team-banner.warriors-banner { border-left: 5px solid #1d428a; }
@@ -268,8 +268,8 @@
 
         .team-logo { width: 72px; height: 72px; object-fit: contain; }
 
-        .team-name { font-size: 1.1rem; font-weight: 700; color: #111827; }
-        .team-record { font-size: 1.8rem; font-weight: 700; color: #111827; }
+        .team-name { font-size: 1.1rem; font-weight: 700; color: #1f2937; }
+        .team-record { font-size: 1.8rem; font-weight: 700; color: #1f2937; }
         .team-standing { font-size: 0.85rem; color: #6b7280; margin-top: 2px; }
 
         .sports-grid {
@@ -293,8 +293,8 @@
             align-items: center;
             padding: 10px 12px;
             border-radius: 8px;
-            background: #f9fafb;
-            border: 1px solid #f3f4f6;
+            background: #e4e6ea;
+            border: 1px solid #d1d5db;
             margin-bottom: 6px;
             font-size: 0.85rem;
         }
@@ -309,19 +309,19 @@
         .game-date-label { font-size: 0.75rem; color: #9ca3af; }
 
         .next-game-card {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
+            background: #e4e6ea;
+            border: 1px solid #c9cdd4;
             border-radius: 10px;
             padding: 14px 16px;
             margin-bottom: 16px;
         }
 
         .next-game-card .label {
-            font-size: 0.7rem; color: #2563eb; font-weight: 600;
+            font-size: 0.7rem; color: #4b5563; font-weight: 600;
             text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px;
         }
 
-        .next-game-card .matchup { font-size: 0.95rem; font-weight: 600; color: #111827; }
+        .next-game-card .matchup { font-size: 0.95rem; font-weight: 600; color: #1f2937; }
         .next-game-card .datetime { font-size: 0.8rem; color: #6b7280; margin-top: 4px; }
 
         /* ESPN article cards with images */
@@ -337,7 +337,7 @@
             object-fit: cover;
             border-radius: 8px;
             flex-shrink: 0;
-            background: #f3f4f6;
+            background: #d6d9e0;
         }
 
         /* ===== STATES ===== */
@@ -363,10 +363,10 @@
         }
 
         .error-state { text-align: center; padding: 30px; color: #9ca3af; }
-        .error-state a { color: #2563eb; display: inline-block; margin-top: 8px; }
+        .error-state a { color: #4b5563; display: inline-block; margin-top: 8px; }
 
         .error-state button {
-            margin-top: 10px; background: #2563eb; border: none; color: #ffffff;
+            margin-top: 10px; background: #4b5563; border: none; color: #ffffff;
             padding: 8px 20px; border-radius: 8px; cursor: pointer;
             font-family: inherit; font-size: 0.85rem;
         }
@@ -385,8 +385,8 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            text-align: center; padding: 24px; color: #9ca3af; font-size: 0.75rem;
-            border-top: 1px solid #e5e7eb; background: #ffffff;
+            text-align: center; padding: 24px; color: #6b7280; font-size: 0.75rem;
+            border-top: 1px solid #c9cdd4; background: #eceef1;
         }
         .footer a { color: #6b7280; }
 
@@ -420,9 +420,6 @@
                     {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
                     {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"},
                     {"proName": "FOREXCOM:DJI", "title": "Dow 30"},
-                    {"proName": "TVC:US02Y", "title": "US 2Y Yield"},
-                    {"proName": "TVC:US10Y", "title": "US 10Y Yield"},
-                    {"proName": "TVC:US30Y", "title": "US 30Y Yield"},
                     {"proName": "TVC:GOLD", "title": "Gold"},
                     {"proName": "TVC:USOIL", "title": "Crude Oil"},
                     {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"}
@@ -669,6 +666,12 @@
             return new Date(dateStr).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
         }
 
+        function extractImage(html) {
+            if (!html) return '';
+            var m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+            return m ? m[1] : '';
+        }
+
         function loadingHTML() {
             return '<div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>';
         }
@@ -712,17 +715,7 @@
                         "symbols": [
                             {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
                             {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
-                            {"s": "FOREXCOM:DJI", "d": "Dow 30"},
-                            {"s": "INDEX:VIX", "d": "VIX"}
-                        ]
-                    },
-                    {
-                        "title": "Treasury Yields",
-                        "symbols": [
-                            {"s": "CBOE:TNX", "d": "10-Year Yield"},
-                            {"s": "CBOE:TYX", "d": "30-Year Yield"},
-                            {"s": "CBOE:FVX", "d": "5-Year Yield"},
-                            {"s": "CBOE:IRX", "d": "13-Week T-Bill"}
+                            {"s": "FOREXCOM:DJI", "d": "Dow 30"}
                         ]
                     },
                     {
@@ -794,7 +787,7 @@
 
         function renderNewsCards(container, items) {
             container.innerHTML = items.slice(0, CONFIG.NEWS_COUNT).map(function(item) {
-                var thumb = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+                var thumb = item.thumbnail || (item.enclosure && item.enclosure.link) || extractImage(item.description) || extractImage(item.content) || '';
                 var imgHtml = thumb
                     ? '<img src="' + sanitize(thumb) + '" alt="" class="news-thumb" onerror="this.style.display=\'none\'">'
                     : '';
@@ -964,8 +957,8 @@
                 '<div style="font-size:1.4rem;font-weight:700;">' + sanitize(record) + '</div>' +
                 '<div style="font-size:0.8rem;color:#6b7280;">' + sanitize(standing) + '</div>' +
                 '</div></div>' +
-                '<div style="margin-top:12px;padding:10px 12px;background:#f9fafb;border-radius:8px;font-size:0.85rem;">' +
-                '<span style="font-weight:600;color:#2563eb;font-size:0.7rem;text-transform:uppercase;">Next Game</span><br>' +
+                '<div style="margin-top:12px;padding:10px 12px;background:#e4e6ea;border-radius:8px;font-size:0.85rem;">' +
+                '<span style="font-weight:600;color:#4b5563;font-size:0.7rem;text-transform:uppercase;">Next Game</span><br>' +
                 nextInfo +
                 '</div>';
         }
