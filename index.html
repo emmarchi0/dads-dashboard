@@ -404,6 +404,29 @@
             .team-banner { flex-direction: column; text-align: center; }
             .news-thumb { width: 90px; height: 60px; }
         }
+
+        /* ===== GREETING BANNER ===== */
+        .greeting-banner {
+            background: #f0f1f4;
+            border-radius: 12px;
+            border: 1px solid #c9cdd4;
+            border-left: 5px solid #0069AA;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        .greeting-text {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .greeting-date {
+            font-size: 0.88rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -455,6 +478,10 @@
 
     <!-- ===== TAB: HOME ===== -->
     <div class="tab-content active" id="tab-home">
+        <div class="greeting-banner" id="greeting-banner">
+            <div class="greeting-text" id="greeting-text"></div>
+            <div class="greeting-date" id="greeting-date"></div>
+        </div>
         <div class="stock-grid">
             <section class="card">
                 <div class="card-header">
@@ -973,9 +1000,26 @@
             fetchTeamData('football', 'nfl', 25, 'niners', 'niners-banner');
         }
 
+        // ===== GREETING =====
+        function updateGreeting() {
+            var hour = new Date().getHours();
+            var greeting;
+            if (hour < 12) greeting = 'Good morning, Michael';
+            else if (hour < 17) greeting = 'Good afternoon, Michael';
+            else greeting = 'Good evening, Michael';
+
+            var now = new Date();
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var dateStr = now.toLocaleDateString('en-US', options);
+
+            document.getElementById('greeting-text').textContent = greeting;
+            document.getElementById('greeting-date').textContent = dateStr;
+        }
+
         // ===== REFRESH =====
         function refreshAll() {
             updateTimestamp();
+            updateGreeting();
             fetchPoliticsNews();
             fetchEconomyNews();
             fetchGeneralNews();
@@ -986,6 +1030,7 @@
         // ===== INIT =====
         document.addEventListener('DOMContentLoaded', function() {
             updateTimestamp();
+            updateGreeting();
             fetchPoliticsNews();
             fetchEconomyNews();
             fetchGeneralNews();
